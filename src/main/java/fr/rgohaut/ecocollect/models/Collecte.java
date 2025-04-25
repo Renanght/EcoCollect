@@ -1,10 +1,7 @@
 package fr.rgohaut.ecocollect.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -18,11 +15,17 @@ public class Collecte {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime dateCollecte;
-    private String agent;
-    private String notes;
+    private LocalDateTime heureDepart;
+    private LocalDateTime heureFin;
+    private String chauffeur;
+    private String villeCible;
+    private String statut; // "planifiée", "en cours", "terminée", "annulée"
 
     @ManyToOne
     @JoinColumn(name = "poubelle_id")
     private Poubelle poubelle;
+
+    // Ou si vous voulez collecter plusieurs poubelles du même type
+    @Transient // Ne sera pas persisté en base
+    private String typePoubelleCible;
 }

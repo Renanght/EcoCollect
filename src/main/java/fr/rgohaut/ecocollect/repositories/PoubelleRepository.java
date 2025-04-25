@@ -10,4 +10,5 @@ public interface PoubelleRepository extends JpaRepository<Poubelle, Long>, JpaSp
     List<Poubelle> findByRegionIgnoreCase(String region);
     List<Poubelle> findByDepartIgnoreCase(String departement);
     List<Poubelle> findByVilleIgnoreCase(String ville);
+    List<Poubelle> findByType(String type);
 }

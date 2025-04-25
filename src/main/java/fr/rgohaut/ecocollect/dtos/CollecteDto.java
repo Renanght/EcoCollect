@@ -1,19 +1,27 @@
 package fr.rgohaut.ecocollect.dtos;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class CollecteDto {
-    private LocalDateTime dateCollecte;
-    private String agent;
-    private String notes;
-    private Long poubelleId; // Pour lier à une poubelle existante
+    @NotNull
+    private LocalDateTime heureDepart;
+
+    private LocalDateTime heureFin;
+
+    @NotBlank
+    private String chauffeur;
+
+    @NotBlank
+    private String villeCible;
+
+    @NotBlank
+    private String typePoubelle; // 'papier', 'plastic', 'poubellePublic', 'verre'
 }
